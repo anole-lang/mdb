@@ -2,3 +2,5 @@
 # Load the book chapters described by `SUMMARY.md` into memory
 # Preprocess all loaded book chapters
 # Generate the final static pages for the book
+
+use read_dir from os;
