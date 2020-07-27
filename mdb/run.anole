@@ -3,4 +3,7 @@
 # Preprocess all loaded book chapters
 # Generate the final static pages for the book
 
+use env;
 use read_dir from os;
+
+@root: env.args()[1];
