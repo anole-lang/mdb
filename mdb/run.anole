@@ -4,6 +4,35 @@
 # Generate the final static pages for the book
 
 use env;
-use read_dir from os;
+use read_dir as rd from os;
 
 @root: env.args()[1];
+
+@make_str(size) {
+    @s: "";
+    while size {
+        s: s + " ";
+        size: size - 1;
+    }
+    return s;
+}
+
+@prints(...args) {
+    foreach args as arg {
+        print(arg);
+    }
+}
+
+@print_dir(root, indent: 0) {
+    @paths: rd.read_dir(root);
+    prints(make_str(indent), "dir: ", root, "\n");
+    foreach paths as path {
+        if path.is_directory() {
+            print_dir(path, indent + 4);
+        } else {
+            prints(make_str(indent + 4), "file: ", path, "\n");
+        }
+    }
+}
+
+print_dir(root);
